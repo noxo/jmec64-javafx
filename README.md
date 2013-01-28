@@ -13,12 +13,12 @@ java -jar jmec64-javafx.jar diskimage.d64
 Options
 =======
 -Dfastload=true|false      enables fastload<br>
--Dkeepaspect=true|false    keeps aspect ratio
--Djoystick=0|1             select joystick port
+-Dkeepaspect=true|false    keeps aspect ratio<br>
+-Djoystick=0|1             select joystick port<br>
 
 Special Keys
 =============
-ALT=Run/Stop
-CTRL=Joystick fire
-
+ALT=Run/Stop<br>
+CTRL=Joystick fire<br>
+<br>
 Have Fun :)
