@@ -8,7 +8,7 @@ JavaFX 2.2 needed.
 
 Running
 =======
-java -jar jmec64-javafx.jar <diskimage.d64>
+java -jar jmec64-javafx.jar diskimage.d64
 
 Options
 =======
