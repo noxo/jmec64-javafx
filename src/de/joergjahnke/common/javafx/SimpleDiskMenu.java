@@ -20,7 +20,8 @@ public class SimpleDiskMenu {
 	private static Vector<String> programs;
 	private static int selectedProgram;
 	private static boolean fast;
-	
+	final static int overScanPadding = 50;
+
 	public static void loadDisk(String diskFilename, C64 c64, boolean fast) 
 			throws Exception{
 		SimpleDiskMenu.c64 = c64;
@@ -72,7 +73,8 @@ public class SimpleDiskMenu {
 		}
 			
 	}
-
+	
+	
 	public static void drawDiskMenu(GraphicsContext gc) {
 
 		try {
@@ -80,7 +82,7 @@ public class SimpleDiskMenu {
 			for (int i = 0; i < programs.size(); i++) {
 				String program = programs.elementAt(i);
 				gc.setFill(i == selectedProgram ? Color.WHITE : Color.BLACK);
-				gc.fillText(program, 0, 10 * (i + 1));
+				gc.fillText(program, overScanPadding, overScanPadding + (10 * (i + 1)));
 			}
 
 		} catch (Exception e) {

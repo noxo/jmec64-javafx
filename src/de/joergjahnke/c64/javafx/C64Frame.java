@@ -46,6 +46,7 @@ public class C64Frame extends javafx.application.Application implements Observer
         keycodeKeyMap.put(KeyCode.F5, "F5");
         keycodeKeyMap.put(KeyCode.F7, "F7");
         keycodeKeyMap.put(KeyCode.BACK_SPACE, "BACKSPACE");
+        keycodeKeyMap.put(KeyCode.ENTER, "ENTER");
     } 
         
     static {
