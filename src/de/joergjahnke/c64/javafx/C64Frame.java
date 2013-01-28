@@ -1,15 +1,11 @@
 package de.joergjahnke.c64.javafx;
 
-import java.io.IOException;
 import java.nio.IntBuffer;
 import java.util.Hashtable;
-import java.util.Vector;
 
 import de.joergjahnke.c64.core.C64;
 import de.joergjahnke.c64.core.Joystick;
 import de.joergjahnke.c64.core.VIC6569;
-import de.joergjahnke.c64.drive.DiskDriveHandler;
-import de.joergjahnke.c64.extendeddevices.EmulatorUtils;
 import de.joergjahnke.common.javafx.SimpleDiskMenu;
 import de.joergjahnke.common.util.Observer;
 import de.joergjahnke.common.vmabstraction.sunvm.SunVMResourceLoader;
@@ -28,6 +24,8 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.paint.Color;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
+
+// Erkki Nokso-Koivisto 28/Jan/2013
 
 public class C64Frame extends javafx.application.Application implements Observer {
 	
@@ -70,13 +68,45 @@ public class C64Frame extends javafx.application.Application implements Observer
         vic.addObserver(this);
         vic.initScreenMemory();
         
+        
         // create a player that observes the SID and plays its sound
         //c64.getSID().addObserver(new WavePlayer(this.c64.getSID()));
         
-        c64.setActiveJoystick(1);
-		SimpleDiskMenu.loadDisk("c:\\users\\erkki\\Desktop\\mikie.d64", c64, true);
-		
+        // set joystick port
+        
+        try {
+        	int activeJoystick = Integer.valueOf(System.getProperty("joystick"));
+        	c64.setActiveJoystick(activeJoystick);
+        } catch (Exception ex) {
+            c64.setActiveJoystick(1);
+        }
+        
+        // enable fastload
+        
+        boolean fastload = false;
+        
+        try {
+        	fastload = Boolean.valueOf(System.getProperty("fastload"));
+        } catch (Exception ex) {
+        	// 
+        }
+
+        
+        // attach disk to drive if defined in args
+        
+        if ( getParameters().getRaw().size() > 0) {
+        	SimpleDiskMenu.loadDisk(getParameters().getRaw().get(0), c64, fastload);
+        }
+        
         boolean keepAspect = true;
+
+        try {
+        	keepAspect = Boolean.valueOf(System.getProperty("fullscreen"));
+        } catch (Exception ex) {
+        	//
+        }
+
+        
         Rectangle2D screenSize = Screen.getPrimary().getBounds();       
         
         if (keepAspect) {
@@ -91,8 +121,8 @@ public class C64Frame extends javafx.application.Application implements Observer
         else {
     		canvas = new Canvas(screenSize.getWidth(), screenSize.getHeight());
         }
-        //canvas = new Canvas(640, 480);
-		stage.setFullScreen(true);
+
+        stage.setFullScreen(true);
 		
 		Group gameNode = new Group(canvas);
 		Scene gameScene = new Scene(gameNode);

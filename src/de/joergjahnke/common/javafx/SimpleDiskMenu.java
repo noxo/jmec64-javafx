@@ -10,6 +10,9 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.input.KeyCode;
 import javafx.scene.paint.Color;
 
+//Erkki Nokso-Koivisto 28/Jan/2013
+
+
 public class SimpleDiskMenu {
 
 	private static boolean active;
