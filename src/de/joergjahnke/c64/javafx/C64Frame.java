@@ -90,7 +90,6 @@ public class C64Frame extends javafx.application.Application implements Observer
         } catch (Exception ex) {
         	// 
         }
-
         
         // attach disk to drive if defined in args
         
@@ -101,11 +100,10 @@ public class C64Frame extends javafx.application.Application implements Observer
         boolean keepAspect = true;
 
         try {
-        	keepAspect = Boolean.valueOf(System.getProperty("fullscreen"));
+        	keepAspect = Boolean.valueOf(System.getProperty("keepaspect"));
         } catch (Exception ex) {
         	//
         }
-
         
         Rectangle2D screenSize = Screen.getPrimary().getBounds();       
         
@@ -159,6 +157,12 @@ public class C64Frame extends javafx.application.Application implements Observer
 		
 		if ( SimpleDiskMenu.isActive() ) {
 			SimpleDiskMenu.keyPressed(keyCode);
+			return;
+		}
+		
+		if (keyCode == KeyCode.ESCAPE) {
+			Platform.exit();
+			c64.stop();
 			return;
 		}
 		
