@@ -1,6 +1,6 @@
 jmec64-javafx
 =============
-JMEC Commodore 64 emulator (by Joerg Jahnke) with JavaFX support.
+JME Commodore 64 emulator (by Joerg Jahnke) with JavaFX support.
 
 Runs well on Raspberry PI and Java 1.8.0 Early Access (no SFX yet).
 
@@ -8,7 +8,9 @@ JavaFX 2.2 needed.
 
 Running
 =======
-java -jar jmec64-javafx.jar diskimage.d64
+* java -jar jmec64-javafx.jar diskimage.d64
+* select program to load from onscreen menu (up/down/enter)
+* type "run" after load is complete, with "fastload" option program is loaded right after enter is pressed from menu.
 
 Options
 =======
