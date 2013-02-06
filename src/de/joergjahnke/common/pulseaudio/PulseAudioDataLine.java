@@ -7,29 +7,32 @@ import java.net.Socket;
 import java.nio.ByteBuffer;
 import java.nio.channels.SocketChannel;
 
-// Erkki Nokso-Koivisto
-
 public class PulseAudioDataLine {
-	
-	private String serverIP = "127.0.0.1";
-//	private String serverIP = "192.168.0.107";
 
-	private int port = 8081;
+	public final static int DEFAULT_SINK_PORT = 8081;
+	public final static String DEFAULT_SINK_IP = "127.0.0.1";
 
-	SocketChannel client;
-	
+	private String ip = DEFAULT_SINK_IP;
+	private int port = DEFAULT_SINK_PORT;
+
+	private SocketChannel client;
 	private boolean open;
 	
-	public static PulseAudioDataLine getDefault() {
-		return new PulseAudioDataLine();
+	public PulseAudioDataLine(String ip, int port) {
+		this.port = port;
+		this.ip = ip;
 	}
 	
+	public static PulseAudioDataLine getDefault() {
+		return new PulseAudioDataLine(DEFAULT_SINK_IP, DEFAULT_SINK_PORT);
+	}
+
 	public void start() throws Exception {
 		client = SocketChannel.open();
 // Use blocking connection, to we can determine when feeding data too fast
 // by the time socket starts blocking.
 //		client.configureBlocking(false);
-		client.connect(new java.net.InetSocketAddress(serverIP,port));
+		client.connect(new java.net.InetSocketAddress(ip,port));
 		
 //		while (!client.finishConnect())
 //			Thread.yield();

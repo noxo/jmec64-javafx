@@ -8,7 +8,7 @@ public class Test {
 		
 		try {
 			
-			PulseAudioDataLine lineout = new PulseAudioDataLine();
+			PulseAudioDataLine lineout = PulseAudioDataLine.getDefault();
 			lineout.start();
 			
 			// 16 bits/ sample, Little Endian, now 256 bytes (128 samples) of silence
