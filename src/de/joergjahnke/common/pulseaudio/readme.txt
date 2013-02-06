@@ -33,8 +33,9 @@ TCP/IP PulseAudio backend
 
   #load-module module-suspend-on-idle
 
-4) Add TCP audio data listener configuration in /etc/pulse/default.pa
-	
+4) Add TCP audio data listener configuration in /etc/pulse/default.pa, these
+   settings forces samplerate to 8000hz and format to 16 bit little endian.
+    
    load-module module-simple-protocol-tcp port=8081 rate=8000 format=s16le channels=1 record=yes
 
 5) Add following parameters to /etc/pulse/audio.conf
@@ -55,9 +56,10 @@ TCP/IP PulseAudio backend
 javax.sound with PulseAudio backend (not tested)
 ================================================
 
-One way to use PulseAudio is to used "padsp" tool, which redirects
-audio that application uses to PulseAudio.
-
+One way to use PulseAudio is to use "padsp" tool, which redirects
+audio from "what ever audio device javax.sound uses" to PulseAudio
+server.
+   
 1) Setup PulseAudio (Steps 1-7)
 
 2) Register javafx.sound based WavePlayer
