@@ -36,7 +36,7 @@ JME C64 => PCM samples => TCP IP socket => PulseAudio server
 
 4) Add TCP audio data listener configuration in /etc/pulse/default.pa
 	
-   load-module module-simple-protocol-tcp port=8081 rate=44100 format=s16le channels=1 record=yes
+   load-module module-simple-protocol-tcp port=8081 rate=8000 format=s16le channels=1 record=yes
 
 5) Add following parameters to /etc/pulse/audio.conf
  

@@ -26,11 +26,13 @@ public class PulseAudioDataLine {
 	
 	public void start() throws Exception {
 		client = SocketChannel.open();
-		client.configureBlocking(false);
+// Use blocking connection, to we can determine when feeding data too fast
+// by the time socket starts blocking.
+//		client.configureBlocking(false);
 		client.connect(new java.net.InetSocketAddress(serverIP,port));
 		
-		while (!client.finishConnect())
-			Thread.yield();
+//		while (!client.finishConnect())
+//			Thread.yield();
 		
 		open = true;
 	}
