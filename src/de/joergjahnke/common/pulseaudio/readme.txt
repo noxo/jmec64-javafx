@@ -1,10 +1,9 @@
-Experimental PulseAudio based audio backend
-===========================================
+Experimental PulseAudio based audio backend (with Raspberry PI)
 
-JME C64 => PCM samples => TCP IP socket => PulseAudio server
+TCP/IP PulseAudio backend 
+==========================
 
-1. Setting up on Raspberry PI
-=============================
+  JME C64 => PCM samples => TCP IP socket => PulseAudio server
   
   http://raspberrypi.stackexchange.com/questions/639/how-to-get-pulseaudio-running
 
@@ -49,5 +48,24 @@ JME C64 => PCM samples => TCP IP socket => PulseAudio server
 
    pulseaudio -D (for more loggin run with -vvvv)
 
-8) Start JavaFX JME-C64
+8) "Register" PulseAudioWavePlayer
+
+   c64.getSID().addObserver(new PulseAudioWavePlayer(this.c64.getSID()));
+
+javax.sound with PulseAudio backend (not tested)
+================================================
+
+One way to use PulseAudio is to used "padsp" tool, which redirects
+audio that application uses to PulseAudio.
+
+1) Setup PulseAudio (Steps 1-7)
+
+2) Register javafx.sound based WavePlayer
+   
+   c64.getSID().addObserver(new WavePlayer(this.c64.getSID())); 
+
+3) Start Java with PulseAudio "wrapper"
+
+   padsp java <args>
+   
  
